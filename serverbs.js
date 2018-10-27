@@ -6,13 +6,13 @@ let path = require("path");
 // Sets up the Express App
 // =============================================================
 let app = express();
-let PORT = 4000;
+let PORT = 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Star Wars Characters (DATA)
+// reservations (DATA)
 // =============================================================
 let reservations = [
   {
@@ -53,47 +53,37 @@ app.get("/api/reservations", function(req, res) {
   return res.json(reservations);
 });
 
-// Displays a single character, or returns false
+// FIX THIS! Displays a single character, or returns false
 app.get("/api/reservations/:reservations", function(req, res) {
   let chosen = req.params.reservations;
-
   console.log(chosen);
-
   for (var i = 0; i < reservations.length; i++) {
     if (chosen === reservations[i].routeName) {
       return res.json(reservations[i]);
     }
   }
-
   return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function(req, res) {
+// Create New reservations - takes in JSON input
+app.post("/api/reservations", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   let newRes = req.body;
 
-// // Using a RegEx Pattern to remove spaces from newCharacter
-//   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-//   newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+// Using a RegEx Pattern to remove spaces from newRes
+// You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+ newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
 
-//   console.log(newcharacter);
+   console.log(newRes);
 
-//   characters.push(newcharacter);
+     // We then add the json the user sent to the reservations array
+   reservations.push(newRes);
 
-//   res.json(newcharacter);
-// });
+   // We then display the JSON to the users
+   res.json(newRes);
+ });
 
-
-  console.log(newResr);
-
-  // We then add the json the user sent to the character array
-  reservations.push(newRes);
-
-  // We then display the JSON to the users
-  res.json(newRest);
-});
 
 // Starts the server to begin listening
 // =============================================================
