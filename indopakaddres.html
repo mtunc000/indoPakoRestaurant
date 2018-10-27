@@ -17,8 +17,8 @@
       <h1>Indo Pak Restaurant</h1>
       <h3>The greatest food in the World!</h3>
       <hr>
-      <a href="./index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> Home Page</button></a>
-      <a href="./indopakdisres.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Reservations</button></a>
+      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> Home Page</button></a>
+      <a href="/view"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Reservations</button></a>
     </div>
     <div class="row">
 
@@ -75,9 +75,9 @@
       };
 
       // Question: What does this code do??
-      $.post("/api/characters", newRes)
+      $.post("/api/reservation", newRes)
         .then(function(data) {
-          console.log("add.html", data);
+          console.log("indopakaddres.html", data);
           alert("Adding Reservation...");
         });
     });
